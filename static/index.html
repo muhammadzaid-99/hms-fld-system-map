@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HMS System Map | Abstract Implementation Summary</title>
+  <meta name="description"
+    content="Single-page abstract summary of the current HMS implementation with two-level interactive component mapping.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div class="atmosphere" aria-hidden="true"></div>
+
+  <header class="hero">
+    <p class="eyebrow">Single-Page Summary | Current Implementation</p>
+    <h1>HMS System Map</h1>
+    <p class="lead">
+      A clean, zoomed-out architecture view for both technical and non-technical stakeholders.
+      Hover components for technical context, then click a top component to reveal one deeper level.
+    </p>
+    <div class="hero-meta">
+      <span class="meta-chip">Proposed URL: map.mydomain.com</span>
+      <span class="meta-chip">Navigation Depth: Level 1 -> Level 2 only</span>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <section class="summary-grid" aria-label="Implementation summary lenses">
+      <article class="summary-card">
+        <h2>Non-Technical Lens</h2>
+        <ul>
+          <li>Hospitals keep local control of their operational and clinical systems.</li>
+          <li>Central services coordinate trust, policy, and collaboration across institutions.</li>
+          <li>Research access is request-based, approved, and trackable instead of open-ended.</li>
+        </ul>
+      </article>
+      <article class="summary-card">
+        <h2>Technical Lens</h2>
+        <ul>
+          <li>Central orchestration uses metadata cataloging and policy-backed query routing.</li>
+          <li>Federated SQL is executed through Trino over hospital MinIO/Iceberg data lakes.</li>
+          <li>Hospital nodes run ETL, clinical services, and AI-assisted processing pipelines.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="map-panel" aria-label="Interactive architecture map">
+      <div class="map-head">
+        <h2>Interactive System Top View</h2>
+        <p>Hover for tooltips. Click a Level 1 block to enter a focused view.</p>
+      </div>
+
+      <div class="top-level" id="top-level">
+        <button class="top-node is-active" type="button" data-node="central" aria-pressed="true"
+          data-tooltip="Coordinates federation governance, identity, metadata, and system-wide operations.">
+          <span class="node-kicker">Level 1</span>
+          <span class="node-title">Central Control Plane</span>
+        </button>
+
+        <button class="top-node" type="button" data-node="hospital" aria-pressed="false"
+          data-tooltip="Represents identical edge deployments at hospitals with local infrastructure and portals.">
+          <span class="node-kicker">Level 1</span>
+          <span class="node-title">Hospital Edge Layer</span>
+        </button>
+
+        <button class="top-node" type="button" data-node="requester" aria-pressed="false"
+          data-tooltip="Where approved researchers discover data, run federated queries, and view analytics.">
+          <span class="node-kicker">Level 1</span>
+          <span class="node-title">Requester & Analytics Layer</span>
+        </button>
+      </div>
+
+      <p class="map-note">Select any block to zoom into a single-screen walkthrough, then use Back to return.</p>
+    </section>
+  </main>
+
+  <section class="focus-view" id="focus-view" aria-hidden="true" aria-label="Level 2 focused architecture view">
+    <div class="focus-inner">
+      <header class="focus-head">
+        <button class="back-btn" type="button" id="back-btn" aria-label="Back to top view">Back to Top View</button>
+        <div>
+          <p class="details-level">Level 2 Focused View</p>
+          <h2 id="focus-title"></h2>
+          <p id="focus-summary"></p>
+        </div>
+      </header>
+      <div class="focus-layout">
+        <section class="focus-body" id="focus-body" aria-live="polite"></section>
+        <aside class="focus-guide" id="focus-guide"></aside>
+      </div>
+    </div>
+  </section>
+
+  <div class="tooltip" id="tooltip" role="tooltip" aria-hidden="true"></div>
+
+  <script src="/js/app.js"></script>
+</body>
+
+</html>
